@@ -1,22 +1,23 @@
 ifeq ($(strip $(DEVKITARM)),)
 $(error "Please set DEVKITARM in your environment")
 endif
+ifeq ($(strip $(DEVKITPRO)),)
+$(error "Please set DEVKITPRO in your environment")
+endif
 
 include $(DEVKITARM)/ds_rules
 
 TARGET := KING_Glitchbound
 BUILD := build
 SOURCES := source
-DATA := data
 INCLUDES :=
-
 ARCH := -march=armv5te -mtune=arm946e-s
 CFLAGS := -g -Wall -O2 $(ARCH) -DARM9
 CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
 ASFLAGS := -g $(ARCH) -DARM9
 LDFLAGS := -specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 LIBS := -lnds9
-LIBDIRS := $(LIBNDS)
+LIBDIRS := $(DEVKITPRO)/libnds
 
 ifneq ($(BUILD),$(notdir $(CURDIR)))
 export OUTPUT := $(CURDIR)/$(TARGET)
