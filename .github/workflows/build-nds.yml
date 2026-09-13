@@ -1,0 +1,25 @@
+name: Build KING Glitchbound NDS
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: devkitpro/devkitarm:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build Nintendo DS ROM
+        run: make
+      - name: Verify ROM
+        run: ls -lh KING_Glitchbound.nds
+      - name: Upload KING Glitchbound
+        uses: actions/upload-artifact@v4
+        with:
+          name: KING-Glitchbound-NDS
+          path: KING_Glitchbound.nds
+          if-no-files-found: error
