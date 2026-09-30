@@ -319,12 +319,17 @@ static void drawHud(PrintConsole *console)
 int main(void)
 {
     PrintConsole bottom;
-    u16 *fb = (u16 *)VRAM_A;
+    int mainBg;
+    u16 *fb;
 
-    videoSetMode(MODE_FB0);
+    videoSetMode(MODE_5_2D);
     videoSetModeSub(MODE_0_2D);
-    vramSetBankA(VRAM_A_LCD);
+    vramSetBankA(VRAM_A_MAIN_BG);
     vramSetBankC(VRAM_C_SUB_BG);
+
+    mainBg = bgInit(3, BgType_Bmp16, BgSize_B16_256x256, 0, 0);
+    bgSetPriority(mainBg, 3);
+    fb = bgGetGfxPtr(mainBg);
 
     consoleInit(&bottom, 0, BgType_Text4bpp, BgSize_T_256x256, 31, 0, false, true);
 
