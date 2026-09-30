@@ -13,10 +13,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install Nintendo DS libraries
+      - name: Check Nintendo DS toolchain
         run: |
-          dkp-pacman -Syu --noconfirm
-          dkp-pacman -S --needed --noconfirm nds-dev
+          test -x "$DEVKITARM/bin/arm-none-eabi-gcc"
+          test -d "$DEVKITPRO/libnds"
       - name: Build Nintendo DS ROM
         run: make
       - name: Verify ROM
