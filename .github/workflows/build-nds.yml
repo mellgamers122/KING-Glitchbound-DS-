@@ -20,7 +20,9 @@ jobs:
       - name: Build Nintendo DS ROM
         run: make
       - name: Verify ROM
-        run: ls -lh KING_Glitchbound.nds
+        run: |
+          test -s KING_Glitchbound.nds
+          stat -c "ROM size: %s bytes" KING_Glitchbound.nds
       - name: Upload KING Glitchbound
         uses: actions/upload-artifact@v4
         with:

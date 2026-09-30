@@ -8,7 +8,8 @@ Gui "KING" e puxado para o NEXUS, um universo corrompido formado por fragmentos 
 - D-Pad: movimento
 - A: pulo
 - B: dash
-- Duas telas
-- Primeiro Fragmento de Save
+- Tela superior com fase grafica em framebuffer
+- Tela inferior com HUD e objetivo
+- Plataformas, portal e 3 Fragmentos de Save
 
 O GitHub Actions compila automaticamente o projeto e gera `KING_Glitchbound.nds` como artifact.
